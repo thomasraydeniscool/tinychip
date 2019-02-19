@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"html"
+	"net/http"
 
 	"github.com/caarlos0/env"
 )
@@ -16,5 +18,9 @@ type Config struct {
 func main() {
 	cfg := Config{}
 	env.Parse(&cfg)
-	fmt.Println(cfg)
+
+	http.HandleFunc("/graphql", func(res http.ResponseWriter, req *http.Request) {
+		fmt.Fprintf(res, "Hello, %q", html.EscapeString(req.URL.Path))
+	})
+	http.ListenAndServe(fmt.Sprintf(":%d", cfg.Port), nil)
 }
