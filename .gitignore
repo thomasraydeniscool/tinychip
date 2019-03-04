@@ -10,3 +10,9 @@
 
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
+
+# dep
+# https://github.com/golang/dep/blob/master/docs/FAQ.md#should-i-commit-my-vendor-directory
+#
+# Due to the nature of this project vendor files will not be commited
+vendor
