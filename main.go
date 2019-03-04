@@ -23,7 +23,8 @@ type Order struct {
 	Total float64 `json:"total"`
 }
 
-func getOrders(w http.ResponseWriter, r *http.Request) {
+// GetOrders returns orders
+func GetOrders(w http.ResponseWriter, r *http.Request) {
 	var orders []Order
 	json.NewEncoder(w).Encode(orders)
 }
@@ -42,7 +43,7 @@ func start() *cobra.Command {
 
 			r := mux.NewRouter()
 
-			r.HandleFunc("/orders", getOrders).Methods("GET")
+			r.HandleFunc("/orders", GetOrders).Methods("GET")
 
 			log.Println("Listening on", addr)
 
